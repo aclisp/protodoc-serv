@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package protodoc;
+
+service ProtoDoc {
+    // 把 proto3 定义的协议转换成文档
+    rpc Convert(ConvertReq) returns (ConvertRes);
+}
+
+message ConvertReq {
+    // proto3 定义的协议内容
+    string proto = 1;
+}
+
+message ConvertRes {
+    // markdown 格式的文档
+    string markdown = 1;
+    // HTML 格式的文档
+    string html = 2;
+}
