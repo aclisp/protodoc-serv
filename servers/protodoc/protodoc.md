@@ -27,6 +27,7 @@ Request parameters
 |   Name    |   Type    |  Description |
 | --------- | --------- | ------------ |
 | proto | string | proto3 定义的协议内容 |
+| filename | string | 协议文件名，用于解析时的附加信息 |
 
 Response parameters
 

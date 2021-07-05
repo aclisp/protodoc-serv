@@ -10,6 +10,8 @@ service ProtoDoc {
 message ConvertReq {
     // proto3 定义的协议内容
     string proto = 1;
+    // 协议文件名，用于解析时的附加信息
+    string filename = 2;
 }
 
 message ConvertRes {
