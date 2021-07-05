@@ -22,6 +22,7 @@
 
       <v-col cols="6">
         <div v-if="docContent" class="doc" v-html="docContent"></div>
+        <v-alert v-if="errMessage" type="error">{{errMessage}}</v-alert>
       </v-col>
     </v-row>
 
@@ -31,13 +32,23 @@
 <script>
 import http from '../http-common'
 
+function formatError (err) {
+  if (err.response) {
+    const e = err.response.data
+    return e.id + ' ' + e.detail
+  } else {
+    return err.message
+  }
+}
+
 export default {
   name: 'ProtoFileConverter',
 
   data: () => ({
     fileName: '',
     fileContent: '',
-    docContent: ''
+    docContent: '',
+    errMessage: ''
   }),
 
   methods: {
@@ -64,9 +75,11 @@ export default {
         })
           .then(res => {
             this.docContent = res.data.html
+            this.errMessage = ''
           })
           .catch(err => {
-            console.error('Error: ' + err)
+            this.docContent = ''
+            this.errMessage = formatError(err)
           })
       }
     }
