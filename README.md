@@ -1,5 +1,7 @@
 # protodoc-serv
 
+A full stack example project utilizing `Vuetify` and `Go Micro`.
+
 ## How to build and deploy
 
 1. Build the portal. The portal has static web pages and some handlers.
@@ -27,3 +29,7 @@ go build
 ```
 ./protodoc-serv
 ```
+
+5. Play
+
+Go to http://localhost:8089/
