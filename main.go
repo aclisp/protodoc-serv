@@ -9,6 +9,7 @@ import (
 
 	"github.com/aclisp/protodoc-serv/gate"
 	"github.com/aclisp/protodoc-serv/internal/reexec"
+	portal "github.com/aclisp/protodoc-serv/portal/go"
 	"github.com/aclisp/protodoc-serv/servers/protodoc"
 	log "github.com/micro/go-micro/v2/logger"
 	signalutil "github.com/micro/go-micro/v2/util/signal"
@@ -26,6 +27,7 @@ var (
 	servers = []serverRecord{
 		{server: gate.NewServer()},
 		{server: protodoc.NewServer()},
+		{server: portal.NewServer()},
 	}
 )
 
