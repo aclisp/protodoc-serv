@@ -15,8 +15,6 @@ message ConvertReq {
 }
 
 message ConvertRes {
-    // markdown 格式的文档
-    string markdown = 1;
     // HTML 格式的文档
     string html = 2;
 }

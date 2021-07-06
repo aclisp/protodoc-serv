@@ -33,7 +33,6 @@ Response parameters
 
 |   Name    |   Type    |  Description |
 | --------- | --------- | ------------ |
-| markdown | string | markdown 格式的文档 |
 | html | string | HTML 格式的文档 |
 
 

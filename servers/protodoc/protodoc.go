@@ -35,7 +35,6 @@ func (p *ProtoDoc) Convert(ctx context.Context, req *ConvertReq, res *ConvertRes
 		parser.CommonExtensions|parser.AutoHeadingIDs,
 	), nil)
 
-	res.Markdown = mark
 	res.Html = string(html)
 	return nil
 }

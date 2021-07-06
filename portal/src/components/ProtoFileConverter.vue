@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
 
     <div>选取一个 Protobuf 文件，把它转换为文档。</div>
 
@@ -21,7 +21,7 @@
       </v-col>
 
       <v-col cols="6">
-        <div v-if="docContent" class="doc" v-html="docContent"></div>
+        <div v-if="docContent" class="markdown" v-html="docContent"></div>
         <v-alert v-if="errMessage" type="error">{{errMessage}}</v-alert>
       </v-col>
     </v-row>
@@ -94,6 +94,6 @@ code {
 }
 </style>
 
-<style>
+<style src="../assets/markdown.css">
 /* global styles for docContent */
 </style>

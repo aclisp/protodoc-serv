@@ -19,10 +19,11 @@ const ProtoTpl = `
 {{if .IsWebSocket}}
 WebSocket {{.Typ}}
 {{end}}
-> {{.HTTPMethod}} {{.URLPath}} <br/>
+> {{.HTTPMethod}} /ymicro/api <br/>
 {{- if not .IsWebSocket}}
 > Content-Type: application/json <br/>
-> Authorization: Bearer (token) <br/>
+> X-Ymicro-Api-Service-Name: {{.PackageName}} <br/>
+> X-Ymicro-Api-Method-Name: {{.ServiceName}}.{{.MethodName}} <br/>
 {{- end}}
 
 {{.Comment}}
