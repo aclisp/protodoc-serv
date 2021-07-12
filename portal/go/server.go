@@ -38,6 +38,7 @@ func (s *Server) Run() {
 	r := mux.NewRouter()
 
 	// setup route of html pages
+	r.HandleFunc("/hello", hello)
 	r.PathPrefix("/").Handler(http.FileServer(bundle.Assets))
 
 	// start micro web service

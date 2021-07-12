@@ -93,3 +93,64 @@ type protoDocHandler struct {
 func (h *protoDocHandler) Convert(ctx context.Context, in *ConvertReq, out *ConvertRes) error {
 	return h.ProtoDocHandler.Convert(ctx, in, out)
 }
+
+// Api Endpoints for Hello service
+
+func NewHelloEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
+// Client API for Hello service
+
+type HelloService interface {
+	// 用于性能测试
+	Hello(ctx context.Context, in *HelloReq, opts ...client.CallOption) (*HelloRes, error)
+}
+
+type helloService struct {
+	c    client.Client
+	name string
+}
+
+func NewHelloService(name string, c client.Client) HelloService {
+	return &helloService{
+		c:    c,
+		name: name,
+	}
+}
+
+func (c *helloService) Hello(ctx context.Context, in *HelloReq, opts ...client.CallOption) (*HelloRes, error) {
+	req := c.c.NewRequest(c.name, "Hello.Hello", in)
+	out := new(HelloRes)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Hello service
+
+type HelloHandler interface {
+	// 用于性能测试
+	Hello(context.Context, *HelloReq, *HelloRes) error
+}
+
+func RegisterHelloHandler(s server.Server, hdlr HelloHandler, opts ...server.HandlerOption) error {
+	type hello interface {
+		Hello(ctx context.Context, in *HelloReq, out *HelloRes) error
+	}
+	type Hello struct {
+		hello
+	}
+	h := &helloHandler{hdlr}
+	return s.Handle(s.NewHandler(&Hello{h}, opts...))
+}
+
+type helloHandler struct {
+	HelloHandler
+}
+
+func (h *helloHandler) Hello(ctx context.Context, in *HelloReq, out *HelloRes) error {
+	return h.HelloHandler.Hello(ctx, in, out)
+}

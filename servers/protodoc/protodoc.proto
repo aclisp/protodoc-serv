@@ -18,3 +18,15 @@ message ConvertRes {
     // HTML 格式的文档
     string html = 2;
 }
+
+service Hello {
+    // 用于性能测试
+    rpc Hello(HelloReq) returns (HelloRes);
+}
+
+message HelloReq {
+}
+
+message HelloRes {
+    string data = 1;
+}

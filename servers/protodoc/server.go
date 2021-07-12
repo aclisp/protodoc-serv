@@ -35,6 +35,7 @@ func (s *Server) Run() {
 	service := micro.NewService(srvOpts...)
 
 	RegisterProtoDocHandler(service.Server(), new(ProtoDoc))
+	RegisterHelloHandler(service.Server(), new(Hello))
 
 	// Run micro server
 	if err := service.Run(); err != nil {
